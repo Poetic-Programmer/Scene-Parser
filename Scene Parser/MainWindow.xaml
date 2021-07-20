@@ -29,12 +29,18 @@
             Lorum Ipsum
         </TextBox>
 
-        <TextBox Grid.Column="1"
-                 Grid.Row="1"
+        <TextBox Grid.Column="0"
+                 Grid.Row="2"
                  Name="ParsedTextBox"
                  IsReadOnly="True">
         </TextBox>
-            <StackPanel Grid.Column="1">
+
+        <TextBox Grid.Column="1"
+                 Grid.Row="1"
+                 Name="NamesTextBox"
+                 IsReadOnly="True">
+        </TextBox>
+        <StackPanel Grid.Column="1">
             <Button Click="GetNamesButtonClick">Get Name</Button>
         </StackPanel>
     </Grid>

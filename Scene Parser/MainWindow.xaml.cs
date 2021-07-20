@@ -21,24 +21,54 @@ namespace Scene_Parser
     public partial class MainWindow : Window
     {
         TextReader reader;
-
+        List<string> names;
+        string text = "";
         public MainWindow()
         {
             InitializeComponent();
 
             reader = new TextReader();
+            names = new List<string>();
         }
 
         private void LoadTextButtonClick(object sender, EventArgs args)
         {
-            var text = reader.GetFileContents("Act 1/scene-1.txt");
+            text = reader.GetFileContents("Act 1/scene-1.txt");
             UneditedTextBox.Text = text;
-            //MessageBox.Show(text);
         }
 
         private void GetNamesButtonClick(object sender, EventArgs args)
         {
+            string[] seperators = new[] {"<sequence>"};
+            var sequences = text.Split(seperators, StringSplitOptions.RemoveEmptyEntries);
+            foreach(string s in sequences)
+            {
+                ParseSequence(s);
+            }
+            NamesTextBox.Text = BuildStringList(names);
+        }
 
+        private void ParseSequence(string sequence)
+        {
+            int index = sequence.IndexOf("<character>") + "<character>".Length;
+            int endIndex = sequence.IndexOf("</character>");
+            int length = endIndex - index;
+            string name = sequence.Substring(index, length);
+
+            names.Add(name);
+        }
+
+        private string BuildStringList(List<string> lines)
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (string s in lines)
+            {
+                var edit = s.Trim();
+                builder.Append(edit);
+                builder.Append("\n");
+                Console.WriteLine(string.Format("Length of line: {0}", edit.Length));
+            }
+            return builder.ToString();
         }
     }
 }
