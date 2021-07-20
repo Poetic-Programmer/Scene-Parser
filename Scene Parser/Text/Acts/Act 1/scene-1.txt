@@ -1,0 +1,51 @@
+﻿<sequence>
+<character>Emily</character>
+<dialogue>
+Wake up dear child your fate awaits.
+</dialogue>
+</sequence>
+
+<sequence>
+<character>Robert</character>
+<dialogue>
+Where the hell am I?
+</dialogue>
+</sequence>
+
+<sequence>
+<character>Emily</character>
+<dialogue>
+A theatre of death at which you’ll be the warm-up act.
+</dialogue>
+</sequence>
+
+<sequence>
+<character>Robert</character>
+<dialogue>
+Do you know who I am? 2-anapaest.
+</dialogue>
+</sequence>
+
+<sequence>
+<character>Emily</character>
+<dialogue>
+Unfortunate for you I do, I do indeed. 
+Me knowing this brought you to me my damned and dreadful Bobby.
+</dialogue>
+</sequence>
+
+<sequence>
+<character>Robert</character>
+<dialogue>
+Let me go this instant! You’ll die for this! I am...
+</dialogue>
+</sequence>
+
+<sequence>
+<character>Emily</character>
+<dialogue>
+NO!. 
+No that is not how this will work instead consider this. 
+Be calm, at peace, at one with God and fall to the abyss.
+</dialogue>
+</sequence>

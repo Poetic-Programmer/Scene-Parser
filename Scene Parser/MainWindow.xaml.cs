@@ -20,9 +20,20 @@ namespace Scene_Parser
     /// </summary>
     public partial class MainWindow : Window
     {
+        TextReader reader;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            reader = new TextReader();
+        }
+
+        private void LoadTextButtonClick(object sender, EventArgs args)
+        {
+            var text = reader.GetFileContents("Act 1/scene-1.txt");
+            UneditedTextBox.Text = text;
+            //MessageBox.Show(text);
         }
     }
 }
