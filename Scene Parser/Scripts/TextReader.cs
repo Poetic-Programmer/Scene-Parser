@@ -10,7 +10,7 @@ namespace Scene_Parser
     class TextReader
     {
         private readonly string location = "/Text/Acts/";
-
+        
         public TextReader()
         {
 

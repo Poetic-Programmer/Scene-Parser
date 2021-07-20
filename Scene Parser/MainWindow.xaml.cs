@@ -35,5 +35,10 @@ namespace Scene_Parser
             UneditedTextBox.Text = text;
             //MessageBox.Show(text);
         }
+
+        private void GetNamesButtonClick(object sender, EventArgs args)
+        {
+
+        }
     }
 }
