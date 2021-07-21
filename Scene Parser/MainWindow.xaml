@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Scene_Parser"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        WindowState="Maximized"
+        Title="MainWindow" Height="610" Width="987">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />
@@ -19,19 +20,88 @@
         </Grid.RowDefinitions>
         
         <StackPanel>
-            <Button Click="LoadTextButtonClick">Load Text</Button>
+            <Button
+                Height="40"
+                Width="120"
+                Click="LoadTextButtonClick">Load Text</Button>
         </StackPanel>
-       
-        <TextBox Grid.Column="0"
-                 Grid.Row="1"
-                 Name="UneditedTextBox"
-                 IsReadOnly="True">
-            Lorum Ipsum
-        </TextBox>
+        <StackPanel Grid.Column="1">
+            <Button
+                Height="40"
+                Width="120"
+                Click="GetNamesButtonClick">Get Name</Button>
+        </StackPanel>
+        <WrapPanel Grid.Column="2">
+            <Button
+                Height="40"
+                Width="80"
+                Click="PreviousCharacterButtonClick"> Left </Button>
+
+            <Button
+                Height="40"
+                Width="80"
+                Click="NextCharacterButtonClick">Right</Button>
+        </WrapPanel>
+        <Grid 
+            Grid.Column="2"
+            Grid.Row="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+
+            <Grid
+                Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel
+                Grid.Column="0"
+                Grid.Row="0">
+
+                    <Label>Name</Label>
+                    <Label>Age</Label>
+                    <Label>Sex</Label>
+                </StackPanel>
+
+                <StackPanel
+                Grid.Column="1"
+                Grid.Row="0">
+
+                    <Label Name="NameLabel">...</Label>
+                    <Label Name="AgeLabel">...</Label>
+                    <Label Name="SexLabel">...</Label>
+                </StackPanel>
+            </Grid>
+                
+                
+
+
+
+
+            <TextBox
+                Grid.Column="0"
+                Grid.Row="1"
+                IsReadOnly="True"
+                Name="IndividualDialogueTextBlock">
+                
+                greetings
+            </TextBox>
+        </Grid>
 
         <TextBox Grid.Column="0"
+                 Grid.Row="1"
+                 Name="FileTextBox"
+                 IsReadOnly="True">
+        </TextBox>
+        
+        <TextBox Grid.Column="1"
                  Grid.Row="2"
-                 Name="ParsedTextBox"
+                 Name="DialogueTextBox"
                  IsReadOnly="True">
         </TextBox>
 
@@ -40,8 +110,6 @@
                  Name="NamesTextBox"
                  IsReadOnly="True">
         </TextBox>
-        <StackPanel Grid.Column="1">
-            <Button Click="GetNamesButtonClick">Get Name</Button>
-        </StackPanel>
+
     </Grid>
 </Window>

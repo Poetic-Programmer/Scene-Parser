@@ -8,13 +8,22 @@ namespace Scene_Parser
 {
     class DialogueSequence
     {
-        public readonly string SpeakerName;
-        public readonly string Dialogue;
+        public readonly CharacterProfile Profile;
+        public readonly Dialogue Dialogue;
 
-        public DialogueSequence(string speakerName, string dialogue)
+        public DialogueSequence(CharacterProfile profile, Dialogue dialogue)
         {
-            SpeakerName = speakerName;
+            Profile = profile;
             Dialogue = dialogue;
+        }
+
+        public string GetCharacterName()
+        {
+            return Profile.Name;
+        }
+        public string GetDialogueText()
+        {
+            return Dialogue.Text;
         }
     }
 }
