@@ -58,10 +58,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Scripts\CharacterDialogueUI.cs" />
     <Compile Include="Scripts\CharacterProfile.cs" />
     <Compile Include="Scripts\CharacterProfileUI.cs" />
-    <Compile Include="Scripts\Dialogue.cs" />
+    <Compile Include="Scripts\CharacterDialogue.cs" />
     <Compile Include="Scripts\DialogueSequence.cs" />
+    <Compile Include="Scripts\SceneManager.cs" />
     <Compile Include="Scripts\TextReader.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

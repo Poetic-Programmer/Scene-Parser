@@ -14,5 +14,15 @@ namespace Scene_Parser
         {
             Name = name;
         }
+
+        public override bool Equals(object obj)
+        {
+            CharacterProfile p = (CharacterProfile)obj;
+            return Name == p.Name;
+        }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

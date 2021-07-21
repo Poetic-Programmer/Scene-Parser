@@ -9,9 +9,9 @@ namespace Scene_Parser
     class DialogueSequence
     {
         public readonly CharacterProfile Profile;
-        public readonly Dialogue Dialogue;
+        public readonly CharacterDialogue Dialogue;
 
-        public DialogueSequence(CharacterProfile profile, Dialogue dialogue)
+        public DialogueSequence(CharacterProfile profile, CharacterDialogue dialogue)
         {
             Profile = profile;
             Dialogue = dialogue;

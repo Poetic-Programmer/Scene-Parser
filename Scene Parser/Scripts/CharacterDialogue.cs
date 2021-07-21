@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Scene_Parser
 {
-    class Dialogue
+    class CharacterDialogue
     {
         public readonly string Text;
 
-        public Dialogue(string text)
+        public CharacterDialogue(string text)
         {
             Text = text;
         }

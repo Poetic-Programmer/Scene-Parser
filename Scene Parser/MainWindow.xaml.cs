@@ -20,113 +20,48 @@ namespace Scene_Parser
     /// </summary>
     public partial class MainWindow : Window
     {
-        TextReader reader;
-        List<DialogueSequence> sequence;
-        string text = "";
-        int characterIndex;
+        private SceneManager sceneManager;
         CharacterProfileUI profileUi;
-        List<CharacterProfile> profile;
+        CharacterDialogueUI dialogueUI;
+
         public MainWindow()
         {
             InitializeComponent();
 
-            reader = new TextReader();
-            sequence = new List<DialogueSequence>();
-            characterIndex = 0;
+            sceneManager = new SceneManager();
             profileUi = new CharacterProfileUI();
-            profile = new List<CharacterProfile>();
+            dialogueUI = new CharacterDialogueUI();
         }
 
         private void LoadTextButtonClick(object sender, EventArgs args)
         {
-            text = reader.GetFileContents("Act 1/scene-1.txt");
-            FileTextBox.Text = text;
+            sceneManager.LoadScene();
+            FileTextBox.Text = sceneManager.FullUneditedText;
         }
 
         private void GetNamesButtonClick(object sender, EventArgs args)
         {
-            string[] seperators = new[] { "<sequence>" };
-            var sequences = text.Split(seperators, StringSplitOptions.RemoveEmptyEntries);
-            foreach (string s in sequences)
-            {
-                sequence.Add(ParseSequence(s));
-            }
-
-            DialogueTextBox.Text = GetAllDialogueForPrinting();
-            NamesTextBox.Text = GetAllNamesForPrinting();
+            sceneManager.LoadNames();
+            DialogueTextBox.Text = sceneManager.GetAllDialogueForPrinting();
+            NamesTextBox.Text = sceneManager.GetAllNamesForPrinting();
         }
 
         private void PreviousCharacterButtonClick(object sender, EventArgs args)
         {
-            if (characterIndex > 0)
-                characterIndex--;
-
-            if (profile.Count > 0)
-            {
-                SetProfileUI();
-            }
+            sceneManager.PreviousSequence();
+            SetProfileUI();
         }
 
         private void NextCharacterButtonClick(object sender, EventArgs args)
         {
-            if (characterIndex < profile.Count - 1)
-                characterIndex++;
-
-            if (profile.Count > 0)
-            {
-                SetProfileUI();
-            }
+            sceneManager.NextSequence();
+            SetProfileUI();
         }
 
         private void SetProfileUI()
         {
-            var currentProfile = profile[characterIndex];
-            profileUi.SetProfile(this, currentProfile);
-        }
-        private string GetAllNamesForPrinting()
-        {
-            StringBuilder builder = new StringBuilder();
-            foreach (DialogueSequence dialogue in sequence)
-            {
-                builder.Append(dialogue.GetCharacterName());
-                builder.Append("\n");
-
-            }
-            return builder.ToString();
-        }
-
-        private string GetAllDialogueForPrinting()
-        {
-            StringBuilder builder = new StringBuilder();
-            foreach (DialogueSequence dialogue in sequence)
-            {
-                builder.Append(dialogue.GetDialogueText());
-                builder.Append("\n");
-            }
-            return builder.ToString();
-        }
-
-        private DialogueSequence ParseSequence(string text)
-        {
-            string name = GetTextBetween(text, "<character>", "</character>");
-            string dialogueText = GetTextBetween(text, "<dialogue>", "</dialogue>").Trim();
-
-            var characterProfile = new CharacterProfile(name);
-            var dialogue = new Dialogue(dialogueText);
-
-            profile.Add(characterProfile);
-            Console.WriteLine("count: " + profile.Count);
-
-
-            return new DialogueSequence(characterProfile, dialogue);
-        }
-
-        private string GetTextBetween(string text, string startKey, string endKey)
-        {
-            int startIndex = text.IndexOf(startKey) + startKey.Length;
-            int endIndex = text.IndexOf(endKey);
-            int length = endIndex - startIndex;
-            return text.Substring(startIndex, length);
+            dialogueUI.SetDialogue(this, sceneManager.CurrentSequence.Dialogue);
+            profileUi.SetProfile(this, sceneManager.CurrentSequence.Profile);
         }
     }
 }
