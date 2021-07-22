@@ -21,6 +21,7 @@ namespace Scene_Parser
     public partial class MainWindow : Window
     {
         private SceneManager sceneManager;
+        private TextReader textReader;
         CharacterProfileUI profileUi;
         CharacterDialogueUI dialogueUI;
 
@@ -28,14 +29,14 @@ namespace Scene_Parser
         {
             InitializeComponent();
 
-            sceneManager = new SceneManager();
+            textReader = new TextReader();
+            sceneManager = new SceneManager(textReader.GetFileContents("Act 1/scene-1.txt"));
             profileUi = new CharacterProfileUI();
             dialogueUI = new CharacterDialogueUI();
         }
 
         private void LoadTextButtonClick(object sender, EventArgs args)
         {
-            sceneManager.LoadScene();
             FileTextBox.Text = sceneManager.FullUneditedText;
         }
 

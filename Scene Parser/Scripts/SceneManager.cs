@@ -10,16 +10,15 @@ namespace Scene_Parser
     {
         public string FullUneditedText { get; private set; }
 
-        TextReader reader;
+        List<CharacterProfile> profile;
         List<DialogueSequence> sequence;
         int characterIndex;
         int sequenceIndex;
 
-        List<CharacterProfile> profile;
-
-        public SceneManager()
+        public SceneManager(string text)
         {
-            reader = new TextReader();
+            FullUneditedText = text;
+
             sequence = new List<DialogueSequence>();
             characterIndex = 0;
             sequenceIndex = 0;
@@ -31,10 +30,6 @@ namespace Scene_Parser
         {
             get { return sequence[sequenceIndex]; }
             private set { }
-        }
-        public void LoadScene()
-        {
-            FullUneditedText = reader.GetFileContents("Act 1/scene-1.txt");
         }
 
         public void LoadNames()
